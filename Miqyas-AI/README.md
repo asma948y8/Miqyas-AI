@@ -58,7 +58,15 @@
 
 ## العرض التقديمي | Presentation
 
-[مشاهدة العرض التقديمي في المتصفح | View presentation online](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2Fasma948y8%2FMiqyas-AI%2Fmain%2FMiqyas-AI%2FMiqyas_AI_presentation.pptx)
+[فتح العرض التقديمي في عارض GitHub | View the presentation on GitHub](Miqyas_AI_presentation.pdf)
+
+![الشريحة الأولى من العرض](presentation-preview/slide-1.png)
+
+![الشريحة الثانية من العرض](presentation-preview/slide-2.png)
+
+![الشريحة الثالثة من العرض](presentation-preview/slide-3.png)
+
+![الشريحة الرابعة من العرض](presentation-preview/slide-4.png)
 
 ## لقطات من التطبيق | Screenshots
 
