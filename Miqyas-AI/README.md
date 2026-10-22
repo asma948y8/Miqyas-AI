@@ -56,6 +56,10 @@
 **Miqyas AI | مِقياس**  
 *من عروض متعددة إلى قرار أوضح.*
 
+## العرض التقديمي | Presentation
+
+[مشاهدة العرض التقديمي في المتصفح | View presentation online](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2Fasma948y8%2FMiqyas-AI%2Fmain%2FMiqyas-AI%2FMiqyas_AI_presentation.pptx)
+
 ## لقطات من التطبيق | Screenshots
 
 ### الصفحة الرئيسية | Home
