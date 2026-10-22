@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}الرئيسية | مِقياس{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow" data-i18n="heroEyebrow">SMART PROCUREMENT ANALYSIS</span>
+    <h1><span class="hero-title-line" data-i18n="heroTitle">قرارات شراء</span> <span data-i18n="heroTitleAccent">أكثر ذكاءً.</span></h1>
+    <p data-i18n="heroCopy">اجمع عروض الموردين في مكان واحد، قارن الأسعار والشروط، واحصل على تحليل يساعدك على اتخاذ قرار مدروس.</p>
+    <a class="button primary" href="{{ url_for('compare') }}"><span data-i18n="heroCta">ابدئي مقارنة جديدة</span><span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="hero-graphic" aria-hidden="true">
+    <div class="process-card">
+      <div class="process-card-head"><span class="process-mark">M</span><div><span data-i18n="productWorkflow">PROCUREMENT WORKFLOW</span><strong data-i18n="workflowTitle">من العروض إلى القرار</strong></div></div>
+      <div class="process-step"><span>01</span><div><strong data-i18n="workflowOffers">عروض الموردين</strong><small data-i18n="workflowOffersNote">اجمع الأسعار والشروط في مكان واحد</small></div><b>✓</b></div>
+      <div class="process-step"><span>02</span><div><strong data-i18n="workflowCriteria">معاييرك أولًا</strong><small data-i18n="workflowCriteriaNote">حدّد الميزانية والتسليم والضمان</small></div><b>✓</b></div>
+      <div class="process-step current"><span>03</span><div><strong data-i18n="workflowDecision">ترتيب واضح</strong><small data-i18n="workflowDecisionNote">قارن النتائج واتخذ قرارك بثقة</small></div><b>↗</b></div>
+      <div class="process-card-foot"><span></span><small data-i18n="workflowFooter">خطوات أبسط. رؤية أوضح.</small></div>
+    </div>
+  </div>
+</section>
+<section class="stats-grid">
+  <article class="stat-card"><span class="stat-icon">▤</span><div><p data-i18n="totalComparisons">إجمالي المقارنات</p><strong>{{ count }}</strong></div></article>
+  <article class="stat-card"><span class="stat-icon teal">▤</span><div><p data-i18n="requiredFields">بيانات منظمة</p><strong data-i18n="fourOfferFields">4 حقول أساسية</strong></div></article>
+  <article class="stat-card"><span class="stat-icon gold">↗</span><div><p data-i18n="supportedFormats">ملفات مدعومة</p><strong>Excel + CSV</strong></div></article>
+</section>
+<section class="section-head"><div><span class="eyebrow">WORKSPACE</span><h2 data-i18n="workspace">مساحة العمل</h2></div><a class="text-link" href="{{ url_for('history') }}" data-i18n="viewAll">عرض كل المقارنات ←</a></section>
+<section class="workspace-grid">
+  <a class="action-card" href="{{ url_for('compare') }}"><span class="action-icon">＋</span><h3 data-i18n="startComparison">ابدئي مقارنة</h3><p data-i18n="uploadOffers">ارفعي ملف Excel أو CSV وابدئي التحليل.</p><span class="card-arrow">←</span></a>
+  <a class="action-card" href="{{ url_for('history') }}"><span class="action-icon purple">◷</span><h3 data-i18n="comparisonHistory">سجل المقارنات</h3><p data-i18n="previousResults">ارجعي إلى نتائجك السابقة في أي وقت.</p><span class="card-arrow">←</span></a>
+</section>
+{% if recent %}
+<section class="section-head"><div><span class="eyebrow">RECENT ACTIVITY</span><h2 data-i18n="recentComparisons">آخر المقارنات</h2></div></section>
+<div class="table-wrap"><table><thead><tr><th data-i18n="comparisonName">اسم المقارنة</th><th data-i18n="date">التاريخ</th><th data-i18n="details">التفاصيل</th></tr></thead><tbody>{% for item in recent %}<tr><td>{{ item.title }}</td><td>{{ item.created_at }}</td><td><a class="table-link" href="{{ url_for('history_detail', comparison_id=item.id) }}" data-i18n="viewResult">عرض النتيجة</a></td></tr>{% endfor %}</tbody></table></div>
+{% endif %}
+{% endblock %}

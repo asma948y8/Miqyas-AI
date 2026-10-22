@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}سجل المقارنات | مِقياس{% endblock %}
+{% block content %}
+<div class="page-heading"><span class="eyebrow">COMPARISON HISTORY</span><h1 data-i18n="comparisonHistory">سجل المقارنات</h1><p data-i18n="historyIntro">جميع المقارنات التي حفظها التطبيق على هذا الجهاز.</p></div>
+{% if records %}
+<div class="table-wrap"><table><thead><tr><th data-i18n="comparisonName">اسم المقارنة</th><th data-i18n="createdAt">تاريخ الإنشاء</th><th data-i18n="result">النتيجة</th></tr></thead><tbody>{% for item in records %}<tr><td><strong>{{ item.title }}</strong></td><td>{{ item.created_at }}</td><td><a class="table-link" href="{{ url_for('history_detail', comparison_id=item.id) }}" data-i18n="openComparison">فتح المقارنة ←</a></td></tr>{% endfor %}</tbody></table></div>
+{% else %}
+<div class="empty-state"><span>◷</span><h2 data-i18n="noComparisons">لا توجد مقارنات بعد</h2><p data-i18n="emptyHistory">عندما تحللين أول ملف، ستظهر نتيجته هنا.</p><a class="button primary" href="{{ url_for('compare') }}" data-i18n="startNow">ابدئي الآن</a></div>
+{% endif %}
+{% endblock %}

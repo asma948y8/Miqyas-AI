@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}نتائج المقارنة | مِقياس{% endblock %}
+{% block content %}
+<div class="page-heading results-heading"><div><span class="eyebrow">ANALYSIS RESULTS · #{{ comparison_id }}</span><h1>{{ title }}</h1><p data-i18n="resultsIntro">تم ترتيب العروض حسب الدرجة المحسوبة من معايير المقارنة.</p></div><a class="button secondary" href="{{ url_for('compare') }}"><span aria-hidden="true">＋</span><span data-i18n="newComparison">مقارنة جديدة</span></a></div>
+<section class="result-summary">
+  <div><span data-i18n="offerCount">عدد العروض</span><strong>{{ offers|length }}</strong></div>
+  <div><span data-i18n="maxBudgetShort">الميزانية القصوى</span><strong class="localized-metric" data-metric="budget" data-value="{{ '{:,.0f}'.format(budget) if budget else '' }}">{{ "{:,.0f}".format(budget) ~ " ر.س" if budget else "غير محددة" }}</strong></div>
+  <div><span data-i18n="maxDeliveryShort">أقصى تسليم</span><strong class="localized-metric" data-metric="days-summary" data-value="{{ delivery_limit if delivery_limit else '' }}">{{ (delivery_limit|string) ~ " يوم" if delivery_limit else "غير محدد" }}</strong></div>
+  <div><span data-i18n="minWarrantyShort">أقل ضمان</span><strong class="localized-metric" data-metric="months-summary" data-value="{{ warranty_min if warranty_min else '' }}">{{ (warranty_min|string) ~ " شهر" if warranty_min else "غير محدد" }}</strong></div>
+</section>
+<section class="panel">
+  <div class="section-head inside"><div><span class="eyebrow">SUPPLIER RANKING</span><h2 data-i18n="supplierRanking">ترتيب الموردين</h2></div><span class="pill" data-i18n="scoreOutOf">الدرجة من 100</span></div>
+  <div class="table-wrap"><table><thead><tr><th data-i18n="rank">الترتيب</th><th data-i18n="supplier">المورد</th><th data-i18n="price">السعر</th><th data-i18n="delivery">التسليم</th><th data-i18n="warranty">الضمان</th><th data-i18n="score">الدرجة</th><th data-i18n="notes">الملاحظات</th></tr></thead><tbody>
+  {% for offer in offers %}
+  <tr><td><span class="rank {% if loop.index == 1 %}top-rank{% endif %}">{{ loop.index }}</span></td><td><strong>{{ offer["اسم المورد"] }}</strong></td><td><span class="localized-metric" data-metric="price" data-value="{{ '{:,.2f}'.format(offer['السعر']) if offer['السعر'] is not none else '' }}">{{ "{:,.2f}".format(offer["السعر"]) ~ " ر.س" if offer["السعر"] is not none else "—" }}</span></td><td><span class="localized-metric" data-metric="days" data-value="{{ offer['مدة التسليم']|int if offer['مدة التسليم'] is not none else '' }}">{{ (offer["مدة التسليم"]|int|string) ~ " يوم" if offer["مدة التسليم"] is not none else "—" }}</span></td><td><span class="localized-metric" data-metric="months" data-value="{{ offer['الضمان']|int if offer['الضمان'] is not none else '' }}">{{ (offer["الضمان"]|int|string) ~ " شهر" if offer["الضمان"] is not none else "—" }}</span></td><td><div class="score-cell"><strong>{{ offer["الدرجة"] }}</strong><span class="score-track"><i style="width: {{ offer['الدرجة'] }}%"></i></span></div></td><td>{% if offer["الملاحظات_والتحذيرات"] %}<span class="warning-text">{{ offer["الملاحظات_والتحذيرات"]|join("، ") }}</span>{% else %}<span class="ok-text" data-i18n="noWarnings">لا توجد تحذيرات ظاهرة</span>{% endif %}</td></tr>
+  {% endfor %}
+  </tbody></table></div>
+  <p class="table-footnote" data-i18n="scoreDisclaimer">الدرجة تقديرية وفق معادلة أولية وليست اعتمادًا نهائيًا للمورد. راجعي شروط التعاقد والمواصفات قبل اتخاذ القرار.</p>
+</section>
+<section class="panel ai-panel">
+  <div class="ai-heading"><span class="ai-spark">✦</span><div><span class="eyebrow">GEMINI AI</span><h2 data-i18n="aiRecommendation">التحليل الذكي والتوصية</h2></div></div>
+  <p class="ai-language-note" data-i18n="aiLanguageNote" hidden>The AI-generated analysis is shown in its original language.</p>
+  <div class="ai-content">{{ ai_summary }}</div>
+</section>
+{% endblock %}

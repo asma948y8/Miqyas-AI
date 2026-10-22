@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}مقارنة جديدة | مِقياس{% endblock %}
+{% block content %}
+<div class="page-heading"><span class="eyebrow">NEW ANALYSIS</span><h1 data-i18n="compareTitle">مقارنة عروض الموردين</h1><p data-i18n="compareIntro">أدخلي معايير الشراء، ثم ارفعي ملف عروض الموردين لتحليلها.</p></div>
+<form class="panel form-panel" method="post" enctype="multipart/form-data">
+  <div class="panel-title"><span class="step-number">01</span><div><h2 data-i18n="setupComparison">إعداد المقارنة</h2><p data-i18n="setCriteria">حددي القيود التي تريدين الالتزام بها.</p></div></div>
+  <div class="form-grid">
+    <label class="field full"><span data-i18n="comparisonName">اسم المقارنة</span><input name="title" placeholder="مثال: شراء أجهزة حاسب محمولة" data-i18n-placeholder="comparisonPlaceholder"></label>
+    <label class="field"><span data-i18n="maxBudget">الميزانية القصوى (ريال)</span><input type="number" name="budget" min="0" step="0.01" placeholder="مثال: 50000" data-i18n-placeholder="budgetPlaceholder"></label>
+    <label class="field"><span data-i18n="maxDelivery">أقصى مدة تسليم (يوم)</span><input type="number" name="delivery_limit" min="0" step="1" placeholder="مثال: 14" data-i18n-placeholder="deliveryPlaceholder"></label>
+    <label class="field"><span data-i18n="minWarranty">أقل ضمان (شهر)</span><input type="number" name="warranty_min" min="0" step="1" placeholder="مثال: 12" data-i18n-placeholder="warrantyPlaceholder"></label>
+  </div>
+  <div class="panel-title file-title"><span class="step-number">02</span><div><h2 data-i18n="supplierFile">ملف عروض الموردين</h2><p data-i18n="supportedFiles">الملفات المدعومة: Excel (.xlsx) وCSV.</p></div></div>
+  <label class="upload-zone" for="fileInput"><span class="upload-icon">↑</span><strong id="fileLabel" data-i18n="dropFile">اسحبي الملف هنا أو اضغطي للاختيار</strong><span data-i18n="fileSizeLimit">الحد الأقصى 10 ميجابايت</span><input id="fileInput" type="file" name="file" accept=".xlsx,.csv" required></label>
+  <div class="hint-box"><strong data-i18n="requiredColumns">الأعمدة المطلوبة في الملف</strong><p data-i18n="columnDetails">اسم المورد، السعر، مدة التسليم، الضمان. ويمكن إضافة عمودي «مطابقة المواصفات» و«ملاحظات».</p><a href="{{ url_for('static', filename='sample_suppliers.csv') }}" download data-i18n="downloadSample">تحميل ملف CSV تجريبي</a></div>
+  <div class="privacy-note" data-i18n="privacyNote">ⓘ سيُرسل ملخص بيانات العروض إلى Google Gemini عند تفعيل المفتاح. لا ترفعي بيانات سرية أو شخصية.</div>
+  <button class="button primary submit-button" type="submit"><span data-i18n="analyzeOffers">حلّل العروض</span><span aria-hidden="true">↗</span></button>
+</form>
+{% endblock %}
