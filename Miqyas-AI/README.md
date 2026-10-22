@@ -55,3 +55,14 @@
 
 **Miqyas AI | مِقياس**  
 *من عروض متعددة إلى قرار أوضح.*
+
+## لقطات من التطبيق | Screenshots
+
+### الصفحة الرئيسية | Home
+![الصفحة الرئيسية للتطبيق](../screenshots/screencapture1.png)
+
+### مقارنة جديدة | New comparison
+![صفحة مقارنة عروض الموردين](../screenshots/screencapture2.png)
+
+### سجل المقارنات | Comparison history
+![صفحة سجل المقارنات](../screenshots/screenshots3.png)
